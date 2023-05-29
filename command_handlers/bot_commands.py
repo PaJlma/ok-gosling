@@ -55,10 +55,12 @@ def searchInBrowser():
     say("Что нужно найти?")
     text = listen()
     say("Сейчас поищем...")
-    if '.com' in text:
-        webbrowser.open_new(
-            f'https://{text}'
-        )
-    else:
-        webbrowser.open_new(
-            f'https://www.google.com/search?q={text}&aqs=chrome.0.0i355i433i512j46i340i433i512l2j46i433i512j46i512l2j0i512j46i512j0i512j46i512.31386j0j7&sourceid=chrome&ie=UTF-8')
+    for value in ['.com', '.org', '.ru', '.net', '.gov', '.edu', '.info']:
+        if value in text:
+            webbrowser.open_new(
+                f'https://{text}'
+            )
+            return
+
+    webbrowser.open_new(
+        f'https://www.google.com/search?q={text}&aqs=chrome.0.0i355i433i512j46i340i433i512l2j46i433i512j46i512l2j0i512j46i512j0i512j46i512.31386j0j7&sourceid=chrome&ie=UTF-8')
