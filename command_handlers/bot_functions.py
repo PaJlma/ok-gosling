@@ -5,7 +5,7 @@ import random
 import os
 
 speechRecognition = speech_recognition.Recognizer()
-speechRecognition.pause_threshold = 1
+speechRecognition.pause_threshold = 0.5
 
 beepSound = "./assets/audio/beep.wav"
 beepErrorSound = "./assets/audio/beep_error.wav"

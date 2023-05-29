@@ -1,5 +1,4 @@
 from .bot_functions import listen, say
-import time
 import random
 import webbrowser
 import requests
@@ -10,8 +9,9 @@ OPEN_WEATHER_API_KEY = "8d24c9e287fbcb3e0ff18319bd2248bb"
 
 def chooseComand(command):
     for key, value in commands.items():
-        if command in value:
-            globals()[key]()
+        for i in value:
+            if i in command:
+                globals()[key]()
 
 
 def startListen():
@@ -20,8 +20,7 @@ def startListen():
 
 
 def ok_gosling():
-    say("Я слушаю")
-    time.sleep(0.5)
+    say("Я слушаю, чего вы хотели?")
     startListen()
 
 
@@ -56,5 +55,10 @@ def searchInBrowser():
     say("Что нужно найти?")
     text = listen()
     say("Сейчас поищем...")
-    webbrowser.open_new(
-        f'https://www.google.com/search?q={text}&aqs=chrome.0.0i355i433i512j46i340i433i512l2j46i433i512j46i512l2j0i512j46i512j0i512j46i512.31386j0j7&sourceid=chrome&ie=UTF-8')
+    if '.com' in text:
+        webbrowser.open_new(
+            f'https://{text}'
+        )
+    else:
+        webbrowser.open_new(
+            f'https://www.google.com/search?q={text}&aqs=chrome.0.0i355i433i512j46i340i433i512l2j46i433i512j46i512l2j0i512j46i512j0i512j46i512.31386j0j7&sourceid=chrome&ie=UTF-8')
