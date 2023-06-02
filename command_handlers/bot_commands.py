@@ -7,27 +7,28 @@ from .commands import commands
 
 OPEN_WEATHER_API_KEY = "8d24c9e287fbcb3e0ff18319bd2248bb"
 
+# функция выбора команд
 def chooseComand(command):
     for key, value in commands.items():
         for i in value:
             if i in command:
                 globals()[key]()
 
-
+# функция начала слушания
 def startListen():
     text = listen()
     chooseComand(text)
 
-
+# функция вызова голосового помощника
 def ok_gosling():
     say("Я слушаю, чего вы хотели?")
     startListen()
 
-
+# функция приветствия
 def hello():
     say("Здарова!")
 
-
+# функция погоды
 def weather():
     fetchUrl = f"https://api.openweathermap.org/data/2.5/weather?lat={'47.23'}&lon={'39.72'}&lang=ru&appid={OPEN_WEATHER_API_KEY}"
 
@@ -41,7 +42,7 @@ def weather():
     say(f"сейчас в Ростове-на-Дону {weatherType}, температура: {temperature}, ощущается как {temperatureFeelsLike}, "
         f"скорость ветра: {windSpeed}, давление: {pressure}, влажность: {humidity}")
 
-
+# функция анекдотов
 def joke():
     array = ["А сейчас Анекдот!", "Анекдот!", "А вот и анекдот", "Сейчас шуткану", "Смешнявка"]
     say(array[random.randint(0, len(array) - 1)])
@@ -50,7 +51,7 @@ def joke():
     text = text[12:-2]
     say(text)
 
-
+# функция браузера
 def searchInBrowser():
     say("Что нужно найти?")
     text = listen()

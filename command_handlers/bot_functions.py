@@ -10,6 +10,7 @@ speechRecognition.pause_threshold = 0.5
 beepSound = "./assets/audio/beep.wav"
 beepErrorSound = "./assets/audio/beep_error.wav"
 
+# начало слушания
 def listen():
     try:
         with speech_recognition.Microphone() as mic:
@@ -23,7 +24,7 @@ def listen():
     except speech_recognition.UnknownValueError:
         playsound(beepErrorSound)
 
-
+# ответ помощника
 def say(content):
     tts = gTTS(content, lang='ru')
     soundFile = f"{random.randint(0, 9999)}.mp3"

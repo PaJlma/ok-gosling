@@ -8,10 +8,11 @@ def interface():
     window.title("Ok-Gosling")
     # Настройка размеров окна
     window.geometry("300x450")
-    window.configure(bg="#333333")
+    # сделал запрет на изменение размера окна
+    window.resizable(False, False)
 
-
-    text_frame = tk.Frame(window, bg="#333333")
+    # фрейм для размещения содержимого окна
+    text_frame = tk.Frame(window)
     text_frame.pack(fill=tk.BOTH, expand=True)
 
     # Загрузка и установка изображения на задний фон фрейма
@@ -24,7 +25,7 @@ def interface():
                           font=("Arial", 14))
     text_label.pack(pady=100, anchor="n")
 
-
+    # кнопка слушания
     listen_button = tk.Button(window, text="Нажмите \n чтобы говорить", command=startListen,
                               width=20, height=2, bg="#880F0F", fg="white")
 
